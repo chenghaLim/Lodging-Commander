@@ -30,7 +30,7 @@ public class HotelServiceImpl implements HotelService {
     private final FacilityServiceImpl facilityService;
     private final AddressRepository addressRepository;
     private final CategoryRepository categoryRepository;
-    private final UserServiceImpl userService;
+//    private final UserServiceImpl userService;
 
     public HotelResponseModel getHotelById(Long id) {
         return convertToDTO(hotelRepository.findById(id).get());
@@ -84,7 +84,7 @@ public class HotelServiceImpl implements HotelService {
 
         var category = categoryRepository.findById(hotelDTO.getCategoryId())
                 .orElseThrow(() -> new RuntimeException("Category not found"));
-        var user = userService.getUserById(hotelDTO.getUserId());
+//        var user = userService.getUserById(hotelDTO.getUserId());
         var hotel = Hotel.builder()
                 .name(hotelDTO.getName())
                 .address(address)
@@ -92,7 +92,7 @@ public class HotelServiceImpl implements HotelService {
                 .tel(hotelDTO.getTel())
                 .grade(hotelDTO.getGrade())
                 .detail(hotelDTO.getDetail())
-                .user(user)
+//                .user(user)
                 .build();
 
         return hotelRepository.save(hotel) != null ? true : false;
