@@ -1,30 +1,22 @@
-//package com.hotel.lodgingCommander.service.impl;
-//
-//import com.hotel.lodgingCommander.model.entity.User;
-//import com.hotel.lodgingCommander.model.repository.UserRepository;
-//import com.hotel.lodgingCommander.service.UserService;
-//import lombok.RequiredArgsConstructor;
-//import org.springframework.security.core.Authentication;
-//import org.springframework.security.core.context.SecurityContextHolder;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-//import org.springframework.stereotype.Service;
-//import org.springframework.transaction.annotation.Transactional;
-//
-//import java.util.HashMap;
-//import java.util.Map;
-//import java.util.Optional;
-//
-//@Service
-//@RequiredArgsConstructor
-//public class UserServiceImpl implements UserService {
-//    private final UserRepository userRepository;
-////    private final BCryptPasswordEncoder passwordEncoder;
-//
-//    public Boolean registerUser(User user) {
+package com.hotel.lodgingCommander.service.impl;
+
+import com.hotel.lodgingCommander.model.entity.User;
+import com.hotel.lodgingCommander.model.repository.UserRepository;
+import com.hotel.lodgingCommander.service.UserService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+@Service
+@RequiredArgsConstructor
+public class UserServiceImpl implements UserService {
+    private final UserRepository userRepository;
+//    private final BCryptPasswordEncoder passwordEncoder;
+
+    public Boolean registerUser(User user) {
 //        user.setPassword(passwordEncoder.encode(user.getPassword()));
-//        return userRepository.save(user).getId() == null ? false : true;
-//    }
-//
+        return userRepository.save(user).getId() == null ? false : true;
+    }
+
 //    public Boolean update(String email, User user) {
 //        try {
 //            User existingUser = userRepository.findByEmail(email)
@@ -84,6 +76,6 @@
 //    public Boolean emailExists(String email) {
 //        return userRepository.existsByEmail(email) ? true : false;
 //    }
-//
-//
-//}
+
+
+}
