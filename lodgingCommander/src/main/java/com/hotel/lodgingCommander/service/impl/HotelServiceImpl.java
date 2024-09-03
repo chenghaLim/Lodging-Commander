@@ -11,9 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -136,5 +134,17 @@ public class HotelServiceImpl implements HotelService {
                         result -> (Long) result[0],
                         result -> (String) result[1]
                 ));
+    }
+
+    @Override
+    public List<?> getAll() {
+        return hotelRepository.findAll().stream().map(
+                hotel -> HotelResponseModel.builder()
+                        .id(hotel.getId())
+                        .hotelName(hotel.getName())
+                        .grade(hotel.getGrade())
+                        .detail(hotel.getDetail())
+                        .category(hotel.getCategory().getName())
+        ).collect(Collectors.toList());
     }
 }

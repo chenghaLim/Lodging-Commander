@@ -13,9 +13,13 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping({"/hotels"})
-@CrossOrigin(origins = "http://localhost:3000")
 public class HotelController {
     private final HotelServiceImpl service;
+
+    @GetMapping
+    public ResponseEntity<?> getAll(){
+        return ResponseEntity.ok(service.getAll());
+    }
 
     @GetMapping("/details/{id}")
     public ResponseEntity<?> getHotelDetail(@PathVariable Long id) {

@@ -25,4 +25,6 @@ public interface HotelService {
     List<?> getHotelsByUserId(Long userId);
 
     Map<?, ?> getHotelNamesByIds(List<Long> ids);
+
+    List<?> getAll();
 }
