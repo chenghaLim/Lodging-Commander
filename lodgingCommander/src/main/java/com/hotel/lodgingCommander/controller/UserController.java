@@ -1,27 +1,24 @@
-//package com.hotel.lodgingCommander.controller;
-//
-//import com.hotel.lodgingCommander.model.user.UserModel;
-//import com.hotel.lodgingCommander.service.impl.UserServiceImpl;
-//import lombok.RequiredArgsConstructor;
-//import org.springframework.http.ResponseEntity;
-//import org.springframework.security.core.context.SecurityContextHolder;
-//import org.springframework.web.bind.annotation.*;
-//
-//import java.util.Map;
-//
-//@RestController
-//@RequiredArgsConstructor
-//@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
-//@RequestMapping("/api/users")
-//public class UserController {
-//
-//    private final UserServiceImpl service;
-//
-//    @PostMapping
-//    public ResponseEntity<?> register(@RequestBody UserModel userModel) {
-//        return ResponseEntity.ok(service.registerUser(userModel.toEntity()));
-//    }
-//
+package com.hotel.lodgingCommander.controller;
+
+import com.hotel.lodgingCommander.model.user.UserModel;
+import com.hotel.lodgingCommander.service.impl.UserServiceImpl;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
+@RequestMapping("/api/users")
+public class UserController {
+
+    private final UserServiceImpl service;
+
+    @PostMapping
+    public ResponseEntity<?> register(@RequestBody UserModel userModel) {
+        return ResponseEntity.ok(service.registerUser(userModel.toEntity()));
+    }
+
 //    @PutMapping
 //    public ResponseEntity<?> update(@RequestBody UserModel userModel) {
 //        var authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -62,4 +59,4 @@
 //        return ResponseEntity.ok(service.emailExists(emailRequest.get("email")));
 //    }
 //
-//}
+}
