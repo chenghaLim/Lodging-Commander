@@ -139,15 +139,17 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public List<?> getAll() {
-        return hotelRepository.findAll().stream().map(
-                hotel -> HotelResponseModel.builder()
+    public List<HotelResponseModel> getAll() {
+        return hotelRepository.findAll().stream()
+                .map(hotel -> HotelResponseModel.builder()
                         .id(hotel.getId())
                         .hotelName(hotel.getName())
                         .grade(hotel.getGrade())
                         .detail(hotel.getDetail())
                         .category(hotel.getCategory().getName())
-        ).collect(Collectors.toList());
+                        .build()
+                )
+                .collect(Collectors.toList());
     }
 
     @Override

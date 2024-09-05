@@ -26,7 +26,7 @@ public interface HotelService {
 
     Map<?, ?> getHotelNamesByIds(List<Long> ids);
 
-    List<?> getAll();
+    List<HotelResponseModel> getAll();
 
     Boolean delete(Long id);
 }
