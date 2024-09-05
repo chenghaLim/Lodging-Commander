@@ -28,7 +28,9 @@ public class HotelServiceImpl implements HotelService {
     private final FacilityServiceImpl facilityService;
     private final AddressRepository addressRepository;
     private final CategoryRepository categoryRepository;
-//    private final UserServiceImpl userService;
+    //    private final UserServiceImpl userService;
+    private final FacilityRepository facilityRepository;
+    private final LikeListRepository likeListRepository;
 
     public HotelResponseModel getHotelById(Long id) {
         return convertToDTO(hotelRepository.findById(id).get());
@@ -146,5 +148,17 @@ public class HotelServiceImpl implements HotelService {
                         .detail(hotel.getDetail())
                         .category(hotel.getCategory().getName())
         ).collect(Collectors.toList());
+    }
+
+    @Override
+    public Boolean delete(Long id) {
+        Hotel hotel = hotelRepository.findById(id).get();
+        addressRepository.delete(hotel.getAddress());
+        facilityRepository.delete(hotel.getFacility());
+        hotel.getRooms().stream().forEach(r -> roomRepository.delete(r));
+        hotel.getLikeLists().stream().forEach(l -> likeListRepository.delete(l));
+        hotel.getReviews().stream().forEach(review -> reviewRepository.delete(review));
+        hotelRepository.delete(hotel);
+        return hotelRepository.findById(id) == null ? true : false;
     }
 }

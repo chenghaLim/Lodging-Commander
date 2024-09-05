@@ -72,4 +72,9 @@ public class HotelController {
     public ResponseEntity<List<?>> getHotelsByUserId(@RequestParam Long userId) {
         return ResponseEntity.ok(service.getHotelsByUserId(userId));
     }
+
+    @DeleteMapping
+    public ResponseEntity<?> deleteHotel(@RequestParam Long id){
+        return ResponseEntity.ok(service.delete(id));
+    }
 }
