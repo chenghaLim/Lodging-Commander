@@ -152,13 +152,7 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public Boolean delete(Long id) {
-        Hotel hotel = hotelRepository.findById(id).get();
-        addressRepository.delete(hotel.getAddress());
-        facilityRepository.delete(hotel.getFacility());
-        hotel.getRooms().stream().forEach(r -> roomRepository.delete(r));
-        hotel.getLikeLists().stream().forEach(l -> likeListRepository.delete(l));
-        hotel.getReviews().stream().forEach(review -> reviewRepository.delete(review));
-        hotelRepository.delete(hotel);
+        hotelRepository.delete(hotelRepository.findById(id).get());
         return hotelRepository.findById(id) == null ? true : false;
     }
 }
