@@ -16,7 +16,7 @@ public class AddressServiceImpl implements AddressService {
     private final AddressRepository addressRepository;
 
     @Transactional
-    public Long save(AddressModel addressDTO) {
+    public String save(AddressModel addressDTO) {
         var address = Address.builder()
                 .address(addressDTO.getAddress())
                 .addressDetail(addressDTO.getAddressDetail())
@@ -25,6 +25,6 @@ public class AddressServiceImpl implements AddressService {
                 .longitude(addressDTO.getLongitude())
                 .build();
         var savedAddress = addressRepository.save(address);
-        return savedAddress != null ? savedAddress.getId() : null;
+        return savedAddress != null ? savedAddress.getId().toString() : null;
     }
 }
